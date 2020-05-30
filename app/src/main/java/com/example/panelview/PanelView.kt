@@ -207,7 +207,6 @@ class PanelView @JvmOverloads constructor(
     private fun drawRadius(canvas: Canvas) {
         val num = data.size
         val rad0 = Math.PI * 2 / num
-        layer1Path.reset()
         repeat(num) { i ->
             val realRadius = radius
             val rad = rad0 * (num - i) - Math.PI
@@ -219,7 +218,6 @@ class PanelView @JvmOverloads constructor(
                 strokeWidth = 1.dp
                 pathEffect = dash
             }
-
             canvas.drawLine(
                 centerWidth.toFloat(),
                 centerHeight.toFloat(),
@@ -233,9 +231,8 @@ class PanelView @JvmOverloads constructor(
     private fun drawTexts(canvas: Canvas) {
         val num = data.size
         val rad0 = Math.PI * 2 / num
-        layer1Path.reset()
         repeat(num) { i ->
-            var text = data[i].text
+            val text = data[i].text
             val textBound = textBounds[i]
             val realRadius = radius + textBound.height()
             val rad = rad0 * (num - i) - Math.PI
